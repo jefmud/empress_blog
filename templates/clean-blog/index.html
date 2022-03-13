@@ -1,0 +1,35 @@
+{% extends 'clean-blog/base.html' %}
+
+{% block navbar %}
+    {% include 'clean-blog/navbar.html' %}
+{% endblock %}
+
+{% block header %}
+    {% include 'clean-blog/index-header.html' %}
+{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+    <div class="post-preview">
+        <a href="/post/{{post.slug}}">
+            <h2 class="post-title">{% if not post.is_published %}
+            <span class="icon has-text-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+            {% endif %}{{post.title}}</h2>
+            <h3 class="post-subtitle">{{post.subtitle}}</h3>
+        </a>
+        
+        <p class="post-meta">
+            Posted by
+            <a href="#!">{{post.author}}</a>
+            on {{post.created_at}}
+        </p>
+    </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% block footer %}
+    {% include 'clean-blog/footer.html' %}
+{% endblock %}
